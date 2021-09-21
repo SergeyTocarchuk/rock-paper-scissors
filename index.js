@@ -38,7 +38,29 @@ function playRound(playerSelection, computerSelection){
   }
 };
 
-// make function’s playRound parameters case-insensitive
-const playerSelection = prompt("Make your choice: Rock, Paper or Scissors").toLowerCase();
-const computerSelection = computerPlay().toLowerCase();
+// game function
+function game(){
+  let playerScore = 0;
+  let compScore = 0;
+  let i = 0;
+ 
+  while( i < 3 ){
+    let playerSelection = prompt("Make your choice: Rock, Paper or Scissors").toLowerCase();
+    let computerSelection = computerPlay().toLowerCase();
+    let result = playRound(playerSelection, computerSelection);
 
+    if( result === 1 ){
+      playerScore++;
+    } else if( result === -1 ){
+      compScore++;
+    }
+    i++;
+  }
+  if( playerScore > compScore ){
+  console.log(`You Won Game: Final score is You: ${playerScore} vs Computer: ${compScore}`);
+  } else {
+    console.log(`Computer Won Game: Final score is You: ${playerScore} vs Computer: ${compScore}`);
+  }
+};
+
+console.log(game());
