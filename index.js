@@ -21,13 +21,24 @@ function computerPlay(){
 // play round function
 function playRound(playerSelection, computerSelection){
   if( playerSelection === 'rock' && computerSelection === 'scissors' ){
-    return `You Won! ${playerSelection} beats ${computerSelection}`;
+    console.log(`You Won Round! ${playerSelection} beats ${computerSelection}`);
+    return 1;
   } else if ( playerSelection === 'paper' && computerSelection === 'rock' ){
-    return `You Won! ${playerSelection} beats ${computerSelection}`;
+    console.log(`You Won Round! ${playerSelection} beats ${computerSelection}`);
+    return 1;
   } else if ( playerSelection === 'scissors' && computerSelection === 'paper' ){
-    return `You Won! ${playerSelection} beats ${computerSelection}`;
+    console.log(`You Won Round! ${playerSelection} beats ${computerSelection}`);
+    return 1;
   } else if ( playerSelection === computerSelection ){
-    return `TIE! ${playerSelection} equals ${computerSelection}`;
-} else {
-  return `You lose! ${computerSelection} beats ${playerSelection}`;
-}
+    console.log(`TIE! ${playerSelection} equals ${computerSelection}`);
+    return 0;
+  } else {
+    console.log(`Computer Won Round! ${computerSelection} beats ${playerSelection}`);
+    return -1;
+  }
+};
+
+// make function’s playRound parameters case-insensitive
+const playerSelection = prompt("Make your choice: Rock, Paper or Scissors").toLowerCase();
+const computerSelection = computerPlay().toLowerCase();
+
