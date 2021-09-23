@@ -4,10 +4,13 @@ const scissorsButton = document.querySelector('#scissors');
 const resetButton = document.querySelector('#reset');
 
 const announcer = document.querySelector('.announcer');
+const score = document.querySelector('.score');
 
 const YOU_WON = "YOU_WON";
 const COMPUTER_WON = "COMPUTER_WON";
 const TIE = "TIE";
+
+let isGameActive = true;
 
 rockButton.addEventListener('click', () => playRound('rock', computerPlay()));
 paperButton.addEventListener('click', () => playRound('paper', computerPlay()));
@@ -37,29 +40,27 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
   if( playerSelection === 'rock' && computerSelection === 'scissors' ){
     announce(YOU_WON);
-    return 1;
   } else if ( playerSelection === 'paper' && computerSelection === 'rock' ){
     announce(YOU_WON);
-    return 1;
   } else if ( playerSelection === 'scissors' && computerSelection === 'paper' ){
     announce(YOU_WON);
-    return 1;
   } else if ( playerSelection === computerSelection ){
     announce(TIE);
-    return 0;
   } else {
     announce(COMPUTER_WON);
-    return -1;
   }
+  if(isGameActive){
+    game();
+  };
 };
 
 const announce = (type) => {
   switch(type){
     case YOU_WON:
-      announcer.innerHTML = '<span class="player">You</span> Won';
+      announcer.innerHTML = '<span class="player">You</span> Won Round';
       break;
     case COMPUTER_WON:
-      announcer.innerHTML = '<span class="computer">Computer</span> Won';
+      announcer.innerHTML = '<span class="computer">Computer</span> Won Round';
       break;
     case TIE:
       announcer.innerText = 'Tie';        
@@ -67,25 +68,15 @@ const announce = (type) => {
   announcer.classList.remove('hide');
 };
 
-// game function
-// function game(){
-//   let playerScore = 0;
-//   let compScore = 0;
-//   let i = 0;
-  
-//   let computerSelection = computerPlay().toLowerCase();
-//   let result = playRound(playerSelection, computerSelection);
-
-//     if( result === 1 ){
-//       playerScore++;
-//     } else if( result === -1 ){
-//       compScore++;
-//     }
-//     i++;
-//   }
-//   if( playerScore > compScore ){
-//   console.log(`You Won Game: Final score is You: ${playerScore} vs Computer: ${compScore}`);
-//   } else {
-//     console.log(`Computer Won Game: Final score is You: ${playerScore} vs Computer: ${compScore}`);
-//   }
-// };
+// game function which collect and show running score
+function game(){
+  let playerScore = 0;
+  let compScore = 0;
+    if( YOU_WON ){
+      playerScore++;
+    } else if( COMPUTER_WON ){
+      compScore++;
+    }
+    score.innerHTML = `Score is <span class="player">You</span>: ${playerScore} vs <span class="computer">Computer</span>: ${compScore}`;
+    score.classList.remove('hide');
+};
