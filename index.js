@@ -9,9 +9,9 @@ const YOU_WON = "YOU_WON";
 const COMPUTER_WON = "COMPUTER_WON";
 const TIE = "TIE";
 
-rockButton.addEventListener('click', () => playRound('rock', computerSelection));
-paperButton.addEventListener('click', () => playRound('paper', computerSelection));
-scissorsButton.addEventListener('click', () => playRound('scissors', computerSelection));
+rockButton.addEventListener('click', () => playRound('rock', computerPlay()));
+paperButton.addEventListener('click', () => playRound('paper', computerPlay()));
+scissorsButton.addEventListener('click', () => playRound('scissors', computerPlay()));
 
 //function will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’
 function computerPlay(){
@@ -35,7 +35,6 @@ function computerPlay(){
 
 // play round function
 function playRound(playerSelection, computerSelection){
-  let computerSelection = computerPlay();
   if( playerSelection === 'rock' && computerSelection === 'scissors' ){
     announce(YOU_WON);
     return 1;
