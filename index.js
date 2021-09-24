@@ -1,7 +1,6 @@
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
-const resetButton = document.querySelector('#reset');
 
 const announcer = document.querySelector('.announcer');
 const score = document.querySelector('.score');
@@ -40,17 +39,21 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
   if( playerSelection === 'rock' && computerSelection === 'scissors' ){
     announce(YOU_WON);
+    playerScore++;
   } else if ( playerSelection === 'paper' && computerSelection === 'rock' ){
     announce(YOU_WON);
+    playerScore++;
   } else if ( playerSelection === 'scissors' && computerSelection === 'paper' ){
     announce(YOU_WON);
+    playerScore++;
   } else if ( playerSelection === computerSelection ){
     announce(TIE);
   } else {
     announce(COMPUTER_WON);
+    compScore++;
   }
   if(isGameActive){
-    game();
+    runningScore(playerScore, compScore);
   };
 };
 
@@ -68,15 +71,11 @@ const announce = (type) => {
   announcer.classList.remove('hide');
 };
 
-// game function which collect and show running score
-function game(){
-  let playerScore = 0;
-  let compScore = 0;
-    if( YOU_WON ){
-      playerScore++;
-    } else if( COMPUTER_WON ){
-      compScore++;
-    }
-    score.innerHTML = `Score is <span class="player">You</span>: ${playerScore} vs <span class="computer">Computer</span>: ${compScore}`;
-    score.classList.remove('hide');
+let playerScore = 0;
+let compScore = 0;
+
+// function return running score
+function runningScore(playerScore, compScore){
+  score.innerHTML = `Score is <span class="player">You</span>: ${playerScore} vs <span class="computer">Computer</span>: ${compScore}`;
+  score.classList.remove('hide');
 };
