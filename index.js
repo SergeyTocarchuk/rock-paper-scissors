@@ -4,6 +4,7 @@ const scissorsButton = document.querySelector('#scissors');
 
 const announcer = document.querySelector('.announcer');
 const score = document.querySelector('.score');
+const finalResult = document.querySelector('.finalResult');
 
 const YOU_WON = "YOU_WON";
 const COMPUTER_WON = "COMPUTER_WON";
@@ -78,4 +79,20 @@ let compScore = 0;
 function runningScore(playerScore, compScore){
   score.innerHTML = `Score is <span class="player">You</span>: ${playerScore} vs <span class="computer">Computer</span>: ${compScore}`;
   score.classList.remove('hide');
+
+  let result = playerScore + compScore;
+  if( result === 5 ){
+    finalScore(playerScore, compScore);
+  }
+};
+
+// function that reflect current score
+function finalScore(playerScore, compScore){
+  if( playerScore > compScore ){
+  finalResult.innerHTML = `<span class="player">YOU</span> WON GAME!`;
+  finalResult.classList.remove('hide');
+  } else {
+    finalResult.innerHTML = `<span class="computer">COMPUTER</span> WON GAME!`;
+    finalResult.classList.remove('hide');
+  }
 };
