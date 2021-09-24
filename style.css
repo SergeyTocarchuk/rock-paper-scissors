@@ -25,6 +25,10 @@
   margin-bottom: 1em;
 }
 
+.hide {
+  display: none;
+}
+
 .player {
   color: #09C372;
 }
@@ -61,4 +65,8 @@
 
 #scissors {
   background-color: #7FFF00;
+}
+
+#restart {
+  background-color: #FF3860;
 }
