@@ -40,22 +40,22 @@ function computerPlay(){
 
 // play round function
 function playRound(playerSelection, computerSelection){
-  if( playerSelection === 'rock' && computerSelection === 'scissors' ){
-    announce(YOU_WON);
-    playerScore++;
-  } else if ( playerSelection === 'paper' && computerSelection === 'rock' ){
-    announce(YOU_WON);
-    playerScore++;
-  } else if ( playerSelection === 'scissors' && computerSelection === 'paper' ){
-    announce(YOU_WON);
-    playerScore++;
-  } else if ( playerSelection === computerSelection ){
-    announce(TIE);
-  } else {
-    announce(COMPUTER_WON);
-    compScore++;
-  }
   if(isGameActive){
+    if( playerSelection === 'rock' && computerSelection === 'scissors' ){
+      announce(YOU_WON);
+      playerScore++;
+    } else if ( playerSelection === 'paper' && computerSelection === 'rock' ){
+      announce(YOU_WON);
+      playerScore++;
+    } else if ( playerSelection === 'scissors' && computerSelection === 'paper' ){
+      announce(YOU_WON);
+      playerScore++;
+    } else if ( playerSelection === computerSelection ){
+      announce(TIE);
+    } else {
+      announce(COMPUTER_WON);
+      compScore++;
+    }
     runningScore(playerScore, compScore);
   };
 };
@@ -93,10 +93,12 @@ function finalScore(playerScore, compScore){
   finalResult.innerHTML = `<span class="player">YOU</span> WON GAME!`;
   finalResult.classList.remove('hide');
   restartButton.classList.remove('hide');
+  isGameActive = false;
   } else {
     finalResult.innerHTML = `<span class="computer">COMPUTER</span> WON GAME!`;
     finalResult.classList.remove('hide');
     restartButton.classList.remove('hide');
+    isGameActive = false;
   }
 };
 
@@ -106,5 +108,6 @@ function restartGame(){
   compScore = 0;
   announcer.classList.add('hide');
   finalResult.classList.add('hide');
+  isGameActive = true;
   return runningScore(playerScore, compScore);
 };
